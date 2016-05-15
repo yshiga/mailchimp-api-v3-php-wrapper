@@ -17,19 +17,19 @@ class MailChimpWrapper {
   public function createCampaign($targetListId, $title, $subject, $fromName, $replyTo){
     return $this->client->post('campaigns', array(
       'type' => 'regular',
-      'recipients' => [ 
+      'recipients' => array( 
         'list_id' => $targetListId,
-      ],
-      'settings' => [ 
+      ),
+      'settings' => array(
         'title' => $title,
         'subject_line' => $subject,
         'from_name' => $fromName,
         'reply_to' => $replyTo,
-      ],
-      'tracking' => [
+      ),
+      'tracking' => array( 
         'html_clicks' => true,
         'text_clicks' => true,
-      ]
+      )  
     ));
   }
 
