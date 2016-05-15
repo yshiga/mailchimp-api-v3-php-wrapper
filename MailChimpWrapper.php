@@ -15,7 +15,7 @@ class MailChimpWrapper {
   }
 
   public function createCampaign($targetListId, $title, $subject, $fromName, $replyTo){
-    return $this->client->post('campaigns', [
+    return $this->client->post('campaigns', array(
       'type' => 'regular',
       'recipients' => [ 
         'list_id' => $targetListId,
@@ -30,13 +30,13 @@ class MailChimpWrapper {
         'html_clicks' => true,
         'text_clicks' => true,
       ]
-    ]);
+    ));
   }
 
   public function setMailBody($body, $id) {
-    return $this->client->put('campaigns/' . $id . '/content', [
+    return $this->client->put('campaigns/' . $id . '/content', array(
       'html' => $body,
-    ]);
+    ));
   }
 
   public function sendCampaign($id) {
