@@ -33,14 +33,24 @@ class MailChimpWrapper {
     ));
   }
 
-  public function setMailBody($body, $id) {
+  public function setMailBody($id, $body) {
     return $this->client->put('campaigns/' . $id . '/content', array(
       'html' => $body,
     ));
   }
 
+  public function setCampaignSchedule($id, $scheduleTime) {
+    $path = 'campaigns/' . $id . '/actions/schedule';
+    return $this->client->post($path, array(
+        'schedule_time' => $scheduleTime,  // Use UTC, like 2017-02-04T19:13:00+00:00
+        'timewarp' => false,
+        'batch_delay' => false
+      )
+    );
+  }
+
   public function sendCampaign($id) {
-    return $this->client->post('campaigns/' + $id + '/actions/send');
+    return $this->client->post('campaigns/' . $id . '/actions/send');
   }
 
   public function getAllList() {
